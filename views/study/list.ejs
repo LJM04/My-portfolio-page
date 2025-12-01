@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Log - OOO Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">임정민 Portfolio</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/projects">Project</a>
+                <a class="nav-link active" href="/studies">Study</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-container p-5 bg-white shadow rounded mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Study Log</h2>
+            <% if (isLoggedIn) { %>
+                <a href="/write/study" class="btn btn-primary">+ 글쓰기</a>
+            <% } %>
+        </div>
+
+        <% const grades = Object.keys(fullStudyTree).sort(); %>
+        <% if (grades.length > 0) { %>
+            <% grades.forEach(function(grade) { %>
+                <div class="mb-4">
+                    <h4 class="fw-bold border-bottom pb-2 border-2"><%= grade %></h4>
+                    
+                    <div class="accordion" id="acc-<%= grade %>">
+                        <% Object.keys(fullStudyTree[grade]).sort().forEach(function(subject, sIdx) { %>
+                            <div class="accordion-item border-0 mb-2">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-light rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%= grade %>-<%= sIdx %>">
+                                        📖 <%= subject %> <span class="badge bg-secondary ms-2"><%= fullStudyTree[grade][subject].length %>개</span>
+                                    </button>
+                                </h2>
+                                <div id="collapse-<%= grade %>-<%= sIdx %>" class="accordion-collapse collapse" data-bs-parent="#acc-<%= grade %>">
+                                    <div class="accordion-body p-0 pt-2 ps-3">
+                                        <ul class="list-group list-group-flush border-start border-3 ms-2">
+                                            <% fullStudyTree[grade][subject].forEach(function(item) { %>
+                                                <li class="list-group-item border-0 bg-transparent py-3">
+                                                    <div class="d-flex justify-content-between align-items-start">
+                                                        <div class="w-100 pe-3">
+                                                            <a href="/study/<%= item.id %>" class="fw-bold text-dark text-decoration-none fs-5 hover-underline">
+                                                                <%= item.title %>
+                                                            </a>
+                                                            
+                                                            <p class="text-muted small mt-2 mb-1" style="white-space: pre-line;">
+                                                                <% 
+                                                                    let preview = item.content || '';
+                                                                    if (preview.length > 100) {
+                                                                        preview = preview.substring(0, 100) + '...';
+                                                                    }
+                                                                %>
+                                                                <%= preview %>
+                                                            </p>
+                                                            <a href="/study/<%= item.id %>" class="small text-primary text-decoration-none">더 읽기 ></a>
+                                                        </div>
+                                                        
+                                                        <% if (isLoggedIn) { %>
+                                                            <div style="width: 80px;" class="text-end">
+                                                                <a href="/edit/study/<%= item.id %>" class="text-secondary small me-1"><i class="bi bi-pencil"></i></a>
+                                                                <a href="/delete/study/<%= item.id %>" class="text-danger small" onclick="return confirm('삭제?');"><i class="bi bi-trash"></i></a>
+                                                            </div>
+                                                        <% } %>
+                                                    </div>
+                                                </li>
+                                            <% }); %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="alert alert-light text-center py-5">등록된 스터디가 없습니다.</div>
+        <% } %>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

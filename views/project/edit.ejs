@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>프로젝트 수정</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5" style="max-width: 600px;">
+        <div class="card shadow p-4">
+            <h3 class="fw-bold mb-4">프로젝트 수정</h3>
+            <form action="/edit/project/<%= project.id %>" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">프로젝트 제목</label>
+                    <input type="text" name="title" class="form-control" value="<%= project.title %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">기술 스택 (쉼표로 구분)</label>
+                    <input type="text" name="tags" class="form-control" value="<%= project.tags %>">
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">GitHub URL</label>
+                        <input type="url" name="github_url" class="form-control" value="<%= project.github_url %>">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Demo(배포) URL</label>
+                        <input type="url" name="demo_url" class="form-control" value="<%= project.demo_url %>">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">이미지 변경 (선택사항)</label>
+                    <input type="file" name="img_file" class="form-control" accept="image/*" multiple>
+                    <% if(project.img_path) { %>
+                        <p class="small text-muted mt-1">현재 이미지 유지됨 (변경하려면 파일 선택)</p>
+                    <% } %>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">상세 설명</label>
+                    <textarea name="description" class="form-control" rows="5"><%= project.description %></textarea>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark">수정 완료</button>
+                    <a href="/project/<%= project.id %>" class="btn btn-outline-secondary">취소</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

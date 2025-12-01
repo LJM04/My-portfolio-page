@@ -1,0 +1,145 @@
+/* 1. 폰트 및 기본 설정 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f1f3f5; /* 전체 배경: 연한 회색 */
+    color: #333;
+}
+
+/* 2. 네비게이션 바 커스텀 */
+.navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    font-weight: 500;
+    margin-left: 10px;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #fff !important; /* 호버 시 완전 흰색 */
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+/* 3. 메인 컨테이너 (흰색 종이 같은 느낌) */
+.main-container {
+    background-color: white;
+    min-height: 85vh; /* 화면 높이의 85% 이상 차지 */
+    border-radius: 15px; /* 모서리 둥글게 */
+    margin-bottom: 50px;
+}
+
+/* 4. 프로필 섹션 (상단 박스) */
+section.bg-light {
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03); /* 안쪽 그림자로 깊이감 */
+}
+
+/* 5. 프로젝트 카드 호버 효과 */
+.hover-effect {
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    position: relative; /* z-index 조정을 위해 필수 */
+}
+
+.hover-effect:hover {
+    transform: translateY(-7px); /* 위로 살짝 떠오름 */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important; /* 그림자 진해짐 */
+    border-color: #333; /* 테두리 진하게 */
+}
+
+/* 6. 반응형 수직 구분선 (PC 화면에서만 보임) */
+@media (min-width: 992px) {
+    .border-end-lg {
+        border-right: 2px solid #e9ecef; /* 연한 회색 구분선 */
+        padding-right: 3rem !important; /* 선과 내용 사이 간격 */
+    }
+}
+
+/* 7. 아코디언 (Notion 스타일 느낌) */
+.accordion-button {
+    background-color: #fff;
+    color: #333;
+    box-shadow: none !important; /* 클릭 시 파란 테두리 제거 */
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa; /* 열렸을 때 배경색 */
+    color: #000;
+    font-weight: bold;
+}
+
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.list-group-item {
+    font-size: 0.95rem;
+    border: none; /* 리스트 내부 선 제거 */
+    padding: 0.8rem 1rem;
+}
+
+/* 8. 태그 (뱃지) 스타일 미세 조정 */
+.badge {
+    font-weight: normal;
+    padding: 0.4em 0.6em;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+   [추가된 스타일] - 이미지 슬라이더 및 버튼
+   ========================================= */
+
+/* 9. 프로젝트 카드 이미지 슬라이더 (Carousel) */
+.project-card-img {
+    height: 200px;        /* 이미지 높이 고정 (카드 크기 일정하게) */
+    object-fit: cover;    /* 비율 유지하며 꽉 채우기 */
+    width: 100%;
+}
+
+/* 슬라이더 화살표 아이콘 배경 추가 (이미지가 흰색이어도 보이게) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.3); /* 반투명 검은 배경 */
+    border-radius: 50%;
+    padding: 15px;
+    background-size: 50% 50%;
+}
+
+/* 10. 링크 및 버튼 유틸리티 */
+/* 카드 전체 클릭(stretched-link) 시에도 수정/삭제 버튼은 눌려야 함 */
+.z-index-front {
+    z-index: 10; 
+    position: relative;
+}
+
+/* 스터디 리스트 링크 호버 효과 */
+.hover-underline:hover {
+    text-decoration: underline !important;
+    color: #0d6efd !important; /* 파란색으로 변경 */
+}
+
+/* 흰색 버튼 (스터디 과목 버튼용) */
+.btn-white {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    color: #333;
+    transition: all 0.2s;
+}
+.btn-white:hover {
+    background-color: #f8f9fa;
+    border-color: #333;
+    transform: translateY(-2px);
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title><%= study.title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark mb-5 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">OOO Portfolio</a>
+            <a href="/studies" class="btn btn-outline-light btn-sm">목록으로</a>
+        </div>
+    </nav>
+
+    <div class="container main-container p-5 bg-white shadow rounded mb-5">
+        
+        <div class="border-bottom pb-3 mb-4">
+            <span class="badge bg-primary mb-2"><%= study.grade %></span>
+            <span class="badge bg-secondary mb-2"><%= study.subject %></span>
+            
+            <div class="d-flex justify-content-between align-items-start">
+                <h1 class="fw-bold"><%= study.title %></h1>
+                <% if (isLoggedIn) { %>
+                    <div>
+                        <a href="/edit/study/<%= study.id %>" class="btn btn-outline-secondary btn-sm">수정</a>
+                        <a href="/delete/study/<%= study.id %>" class="btn btn-outline-danger btn-sm" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+                    </div>
+                <% } %>
+            </div>
+            <div class="text-muted small mt-2">
+                작성일: <%= new Date(study.created_at).toLocaleDateString() %>
+            </div>
+        </div>
+
+        <div class="content mb-5" style="white-space: pre-line; line-height: 1.8; font-size: 1.1rem; min-height: 200px;">
+            <%= study.content %>
+        </div>
+
+        <% if(study.file_path) { %>
+            <div class="card bg-light border-0">
+                <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-file-earmark-text fs-3 me-3 text-primary"></i>
+                    <div>
+                        <h6 class="fw-bold mb-1">첨부 파일</h6>
+                        <a href="<%= study.file_path %>" download="<%= study.origin_filename %>" class="text-decoration-none text-dark hover-underline">
+                            <%= study.origin_filename %> <i class="bi bi-download ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

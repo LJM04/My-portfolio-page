@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>프로젝트 등록</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5" style="max-width: 600px;">
+        <div class="card shadow p-4">
+            <h3 class="fw-bold mb-4">새 프로젝트 등록</h3>
+            <form action="/write/project" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">프로젝트 제목</label>
+                    <input type="text" name="title" class="form-control" placeholder="예: 공유 바이크 시스템" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">기술 스택 (쉼표로 구분)</label>
+                    <input type="text" name="tags" class="form-control" placeholder="예: Node.js,MySQL,AWS">
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">GitHub URL</label>
+                        <input type="url" name="github_url" class="form-control" placeholder="https://github.com/...">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Demo(배포) URL</label>
+                        <input type="url" name="demo_url" class="form-control" placeholder="http://...">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">대표 이미지 업로드</label>
+                    <input type="file" name="img_file" class="form-control" accept="image/*" multiple>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">상세 설명</label>
+                    <textarea name="description" class="form-control" rows="5" placeholder="프로젝트 설명을 적어주세요."></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark w-100">등록하기</button>
+                <a href="/projects" class="btn btn-outline-secondary w-100 mt-2">취소</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

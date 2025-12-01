@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>내 정보 수정</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5 mb-5" style="max-width: 800px;">
+        <div class="card shadow p-4">
+            <h3 class="fw-bold mb-4">내 정보 수정</h3>
+            <form action="/edit/profile" method="POST">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">이름</label>
+                        <input type="text" name="name" class="form-control" value="<%= profile.name %>">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">이메일</label>
+                        <input type="text" name="email" class="form-control" value="<%= profile.email %>">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">학교 (재학기간 포함)</label>
+                    <input type="text" name="school" class="form-control" value="<%= profile.school %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">학과</label>
+                    <input type="text" name="major" class="form-control" value="<%= profile.major %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">주소</label>
+                    <input type="text" name="address" class="form-control" value="<%= profile.address %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">기술 스택 (Skills)</label>
+                    <input type="text" name="skills" class="form-control" value="<%= profile.skills %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">GitHub 주소</label>
+                    <input type="text" name="github_url" class="form-control" value="<%= profile.github_url %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">자기소개서 내용</label>
+                    <textarea name="intro_content" class="form-control" rows="10"><%= profile.intro_content %></textarea>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-danger">수정사항 저장하기</button>
+                    <a href="/" class="btn btn-outline-secondary">취소</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
