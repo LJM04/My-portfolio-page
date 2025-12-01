@@ -82,30 +82,28 @@ studies: 학습 기록 데이터 (학년, 과목, 내용, 첨부파일 등)
 
 💻 설치 및 실행 방법 (Installation)
 1. 프로젝트 클론 및 패키지 설치
-
 Bash
 
-git clone 
+git clone https://github.com/LJM04/My-photofolio-page.git
 cd My-photofolio-page
 npm install
+
 2. 환경 변수 설정 (.env) 프로젝트 루트에 .env 파일을 생성하고 DB 정보를 입력하세요.
 
 코드 스니펫
-
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=your_password
 DB_NAME=portfolio_db
 PORT=3000
 SESSION_SECRET=your_secret_key
+
 3. 데이터베이스 구축 MySQL 워크벤치나 CLI를 통해 schema.sql 파일을 실행하여 테이블을 생성하세요. (초기 관리자 계정: admin / 1234 로 설정되어 있습니다.)
 
 4. 서버 실행
-
 Bash
 
 # 일반 실행
 npm start
-
 # 개발 모드 실행 (nodemon 필요)
 npm run dev
